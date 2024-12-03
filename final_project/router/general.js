@@ -136,7 +136,14 @@ public_users.get('/title/:title',function (req, res) {
 public_users.get('/review/:isbn',function (req, res) {
   //Write your code here
   const isbn = req.params.isbn;
-  res.send(books[isbn]["review"]);
+  
+  if (typeof(books[isbn]["review"]) != "undefined"){
+    op = JSON.stringify(books[isbn]["review"],null,4);
+    res.send(op);
+  }
+  else {
+    res.send(JSON.stringify("{}",null,4))
+  }
 });
 
 module.exports.general = public_users;
